@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "InterfacePattern",
+      "request": "launch",
+      "mainClass": "com.practice.designpatterns.interfacepattern.InterfacePattern",
+      "projectName": "challenges"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-SpringbootWebApplication<springboot-web>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.andoni.springboot.course.webapp.springbootweb.SpringbootWebApplication",
+      "projectName": "springboot-web",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
