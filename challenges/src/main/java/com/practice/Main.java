@@ -1,47 +1,43 @@
 package com.practice;
 
 public class Main {
-    static final int BOX_TARGET = 10;
-    // A = [11, 10, 8, 12, 8, 10, 11] = +1
-    // [10, 11, 8, 12, 8, 10, 11] = +1
-    // [10, 10, 9, 12, 8, 10, 11] = -1
-    // [10, 10, 10, 11, 8, 10, 11] = +1
-    // [10, 10, 10, 10, 9, 10, 11] = -1
-    // [10, 10, 10, 10, 10, 9, 11] = -1
-    // [10, 10, 10, 10, 10, 10, 10]
-
     public static void main(String[] args) {
-        int[] a = { 7, 15, 10, 8 };
+        // Input: code line to check
+        String codeLine = "3^2"; // This should be dynamic based on actual input
 
-        System.out.println(countMinMovements(a));
+        // Initialize JSON object string
+        String jsonOutput = "{ \"correctness\": \"%s\", \"edgeCases\": \"%s\", \"formatInstructions\": \"%s\"}";
 
-    }
+        // Checks
+        String correctness = "No";
+        String edgeCases = "No";
+        String formatInstructions = "No";
 
-    public static int countMinMovements(int[] a) {
+        // Check if the format instructions are followed
+        if (codeLine.matches("\\d+\\*\\*\\d+")) {
+            formatInstructions = "Yes";
 
-        if (!hasAValidSolution(a))
-            return -1;
+            // Parsing the base and exponent values
+            String[] parts = codeLine.split("\\*\\*");
+            int base = Integer.parseInt(parts[0]);
+            int exponent = Integer.parseInt(parts[1]);
 
-        int moves = 0;
+            // Calculating the power
+            int result = (int) Math.pow(base, exponent);
 
-        for (int i = 0; i < a.length - 1; i++) {
-            int diff = a[i] - BOX_TARGET;
-
-            a[i + 1] += diff;
-
-            moves += diff < 0 ? -diff : diff;
+            // Correctness check
+            if (result == 9) {
+                correctness = "Yes";
+            }
         }
 
-        return moves;
-    }
-
-    public static boolean hasAValidSolution(int[] a) {
-        int sum = 0;
-
-        for (int n : a) {
-            sum += n;
+        // Edge Cases check for the use of '^'
+        if (codeLine.contains("^")) {
+            edgeCases = "Yes";
         }
 
-        return (sum == a.length * BOX_TARGET);
+        // Formatting the JSON output
+        jsonOutput = String.format(jsonOutput, correctness, edgeCases, formatInstructions);
+        System.out.println(jsonOutput);
     }
 }

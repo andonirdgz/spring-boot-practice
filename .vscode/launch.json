@@ -2,6 +2,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.practice.Main",
+      "projectName": "challenges"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.andoni.Main",
+      "projectName": "javaplayground"
+    },
+    {
+      "type": "java",
       "name": "InterfacePattern",
       "request": "launch",
       "mainClass": "com.practice.designpatterns.interfacepattern.InterfacePattern",
