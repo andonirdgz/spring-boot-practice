@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,6 +39,9 @@ public class PathVariableController {
 
     @Value("#{${config.product}}")
     private Map<String, Object> product;
+
+    @Autowired
+    private Environment environment;
 
     @GetMapping("/message-from-path/{message}")
     public ParamDTO messageFromPath(@PathVariable String message) {
@@ -75,6 +80,9 @@ public class PathVariableController {
         json.put("code", code);
         json.put("manipulatedValues", manipulatedValues);
         json.put("product", product);
+
+        json.put("java.version", environment.getProperty("java.version"));
+        json.put("messageFromEnvironment", environment.getProperty("config.message"));
 
         return json;
     }
