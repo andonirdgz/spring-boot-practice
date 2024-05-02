@@ -35,6 +35,9 @@ public class PathVariableController {
     @Value("#{ '${config.values}'.toUpperCase().split(',') }")
     private List<String> manipulatedValues;
 
+    @Value("#{${config.product}}")
+    private Map<String, Object> product;
+
     @GetMapping("/message-from-path/{message}")
     public ParamDTO messageFromPath(@PathVariable String message) {
 
@@ -71,6 +74,7 @@ public class PathVariableController {
         json.put("values", values);
         json.put("code", code);
         json.put("manipulatedValues", manipulatedValues);
+        json.put("product", product);
 
         return json;
     }
